@@ -1,4 +1,4 @@
-# AJAX JSON PHP Contact Form (with Bootstrap 3.3.7 CSS) v1.0.0 (@ /JuggerGrimrod/ajax-php-contact-form)
+# AJAX JSON PHP Contact Form (with Bootstrap 3.3.7 CSS) v1.0.0 (@ /JuggerGrimrod/AJAX-JSON-PHP-Contact-Form-Bootstrap)
 
 ## This Git repository contains markup, style and script file assets, and a sample dataFile.csv for a feature-rich, responsive, cross-browser, AJAX JSON PHP contact form.
 
