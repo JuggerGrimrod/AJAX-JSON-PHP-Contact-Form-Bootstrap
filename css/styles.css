@@ -1,1 +1,14 @@
-
+body{background-color:#000}
+h1,label{color:#fff}
+h2{color:#666}
+.required{color:#ff0000;font-weight:800}
+.smText{font-size:11px}
+.subh1{font-size:13px;color:#999}
+.taCharCounter{font-size:11px;color:#33cc00;font-weight:800}
+select.form-control{line-height:28px}	
+@media (max-width:767px){
+	label{font-size:18px;font-weight:400}
+	.smText{font-size:14px}
+	.subh1{font-size:16px}
+	.taCharCounter{font-size:14px}	
+}
