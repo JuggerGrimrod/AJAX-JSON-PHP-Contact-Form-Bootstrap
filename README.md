@@ -65,7 +65,7 @@ The form includes the following elements and options:
     * **English (EN) REGEX strings (optional) are commented out at the end of each of those lines if you require English-only form data handling.**   
   * IP Address data element, pulled from *$_SERVER['REMOTE_ADDR']* (present in email response options only).
   * Data-object handling options:
-    * **.csv data-file** submission storage on server (i.e. *dataFile.csv*), with options to write ('w') or append ('a') in **/processor.php on lines 151 to 156**. The sample data file is populated with test examples from seven browsers using dummy data.  Instances of "link", "bold" and "italic" represent HTML form data that was altered via the PHP strip_tags() method in **/processor.php on line 125**.
+    * **.csv data-file** submission storage on server (i.e. *dataFile.csv*), with options to write ('w') or append ('a') in **/processor.php on lines 151 to 156**. The sample data file is populated with test examples from seven browsers using dummy data.  Instances of "link", "bold" and "italic" represent HTML form data that was altered via the PHP *strip_tags()* method in **/processor.php on line 125**.
     * **html email** data fulfillment: 
       * **html email output is defined in /processor.php on lines 160 - 217** and is set as an HTML table to 100% email client viewport width.  Additionally, a placeholder image is set in the top of the table, using an image pulled from https://placeholder.com.  To see your logo image within the email output, you must link the <IMG /> tag therein to an image file on your server via an absolute URL pointing to the image asset.
       * **html Content-type header must be set in /processor.php on line 250 (default UTF-8) or line 251 (optional ISO-8859-1)**.
@@ -83,7 +83,7 @@ The form includes the following elements and options:
 * ### Bootstrap 3.3.7 CSS file at **/css/bootstrap.3.3.7.min.css**.  
 
 * ### Bootstrap 3.0.3 CSS file at **/css/bootstrap.3.0.3.min.css** (optional):
-  * This form was also tested with Bootstrap 3.0.3 CSS without issue.  To use this version of Bootstrap CSS, just change the local css filename reference in **/index.html on line 11*.   
+  * This form was also tested with Bootstrap 3.0.3 CSS without issue.  To use this version of Bootstrap CSS, just change the local css filename reference in **/index.html on line 11**.   
 
 * ### File Permissions: 
   * The parent directory on your server where you are running the form from should have permissions set to 755.    
