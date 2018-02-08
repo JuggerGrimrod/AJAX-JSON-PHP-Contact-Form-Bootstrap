@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>AJAX JSON PHP Contact Form (with Bootstrap 3.3.7 CSS)</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="AJAX JSON PHP Contact Form (with Bootstrap 3.3.7 CSS) Github Demo" name="description">
+    <meta content="Daryl McCormick" name="author">  
+	<!-- <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> load bootstrap 3.3.7 css via CDN -->
+	<link rel="stylesheet" href="css/bootstrap.3.3.7.min.css"><!-- load locally -->
+	<link rel="stylesheet" href="css/styles.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> --> <!-- load jquery 2.0.3 js via CDN -->
+    <script src="js/jquery.min.js"></script> <!-- load locally -->
+    <script src="js/scripts.js"></script> 
+    <script src="js/handler.js"></script> 
+</head>
+<body>
+	<div class="container">	
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+
+			    <h1>AJAX JSON PHP Contact Form <small>(with Bootstrap 3.3.7 CSS)</small></h1>
+
+
+			    <h2>Contact Us <span class="subh1">(fields marked with an <span class="required">*</span> are required)</span></h2>
+
+
+			    <form method="POST" action="processor.php">
+
+
+			    	<input type="hidden" id="date" name="date" value="">
+					<input type="hidden" id="time" name="time" value="">
+
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+
+							<!-- SALUTATION -->
+			                <div id="salutation-group" class="form-group">
+			                    <label for="salutation">Title <span class="required">*</span></label>
+			                    <select name="salutation" class="form-control"> 
+			                        <option value="0" selected>Choose one</option> 
+			                        <option value="Mr">Mr</option> 
+			                        <option value="Mrs">Mrs</option> 
+			                        <option value="Ms">Ms</option> 
+			                        <option value="Miss">Miss</option> 
+			                    </select>                        
+			                </div>
+
+			            </div><!-- /.col-xs-12.col-sm-12.col-md-2.col-lg-2 -->
+			            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+
+					        <!-- FIRST NAME -->
+					        <div id="firstName-group" class="form-group">
+					            <label for="firstName">First Name <span class="required">*</span></label>
+					            <input type="text" class="form-control" name="firstName" placeholder="First Name*" maxlength="20">
+					            <!-- error messages append here -->
+					        </div>
+
+					    </div><!-- /.col-xs-12.col-sm-12.col-md-5.col-lg-5 -->
+			            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+
+					        <!-- LAST NAME -->
+					        <div id="lastName-group" class="form-group">
+					            <label for="lastName">Last Name <span class="required">*</span></label>
+					            <input type="text" class="form-control" name="lastName" placeholder="Last Name*" maxlength="20">
+					            <!-- error messages append here -->
+					        </div>
+
+					    </div><!-- /.col-xs-12.col-sm-12.col-md-5.col-lg-5 -->
+					</div><!-- /.row -->
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+					        <!-- EMAIL ADDRESS -->
+					        <div id="email-group" class="form-group">
+					            <label for="email">Email Address <span class="required">*</span></label>
+					            <input type="text" class="form-control" name="email" placeholder="Email Address*">
+					            <!-- error messages append here -->
+					        </div>
+
+					    </div><!-- /.col-xs-12.col-sm-12.col-md-4.col-lg-4 -->
+					    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+					        <!-- CONFIRM EMAIL ADDRESS -->
+					        <div id="email2-group" class="form-group">
+					            <label for="email2">Confirm Email Address <span class="required">*</span></label>
+					            <input type="text" class="form-control" name="email2" placeholder="Confirm Email Address*">
+					            <!-- error messages append here -->
+					        </div>
+
+					    </div><!-- /.col-xs-12.col-sm-12.col-md-4.col-lg-4 -->
+			        	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+					        <!-- PHONE NUMBER -->
+					        <div id="phone-group" class="form-group">
+					            <label for="phone">Phone Number <span class="required">*</span></label>
+					            <input type="text" class="form-control" name="phone" placeholder="Phone Number*" maxlength="10">
+					            <!-- error messages append here -->
+					        </div>
+
+					    </div><!-- /.col-xs-12.col-sm-12.col-md-4.col-lg-4 -->
+					</div><!-- /.row -->
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+					        <!-- ADDRESS 1 -->
+			                <div id="address1-group" class="form-group">
+			                    <label for="address1">Address 1 <span class="required">*</span></label>
+			                    <input type="text" class="form-control" name="address1" placeholder="Address 1*" maxlength="30">
+			                    <!-- error messages append here -->
+			                </div>
+
+			            </div><!-- /.col-xs-12.col-sm-12.col-md-6.col-lg-6 -->
+			        	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+			                <!-- ADDRESS 2 -->
+			                <div id="address2-group" class="form-group">
+			                    <label for="address2">Address 2</label>
+			                    <input type="text" class="form-control" name="address2" placeholder="Address 2" maxlength="30">
+			                    <!-- error messages append here -->
+			                </div>
+
+			            </div><!-- /.col-xs-12.col-sm-12.col-md-6.col-lg-6 -->
+					</div><!-- /.row -->
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+					        <!-- CITY -->
+					        <div id="city-group" class="form-group">
+					            <label for="city">City <span class="required">*</span></label>
+					            <input type="text" class="form-control" name="city" placeholder="City" maxlength="20">
+					            <!-- error messages append here -->
+					        </div>
+
+					    </div><!-- /.col-xs-12.col-sm-12.col-md-6.col-lg-6 -->
+			        	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+
+					        <!-- STATE (US ONLY) -->
+					        <!-- <div id="state-group" class="form-group">
+					        	<label for="state">State</label>
+					        	<select size="1" class="form-control" name="state" id="state"><option>Select State</option><option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option><option value="AR">AR</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DC">DC</option><option value="DE">DE</option><option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="ME">ME</option><option value="MD">MD</option><option value="MA">MA</option><option value="MI">MI</option><option value="MN">MN</option><option value="MS">MS</option><option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option><option value="NV">NV</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NY">NY</option><option value="NC">NC</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option><option value="WI">WI</option><option value="WY">WY</option></select>
+					        </div> -->
+
+					        <!-- STATE/PROVINCE (US/CANADA) -->
+			                <div id="state-group" class="form-group">
+			                    <label for="state">State/Province <span class="required">*</span></label>
+			                    <select size="1" class="form-control" name="state" id="state"><option value="0" selected>Select State/Province</option><option value="0">United States:</option><option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option><option value="AR">AR</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DC">DC</option><option value="DE">DE</option><option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="ME">ME</option><option value="MD">MD</option><option value="MA">MA</option><option value="MI">MI</option><option value="MN">MN</option><option value="MS">MS</option><option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option><option value="NV">NV</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NY">NY</option><option value="NC">NC</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option><option value="WI">WI</option><option value="WY">WY</option><option value="0">--</option><option value="0">Canada:</option><option value="AB">AB</option><option value="BC">BC</option><option value="MB">MB</option><option value="NB">NB</option><option value="NL">NL</option><option value="NT">NT</option><option value="NU">NU</option><option value="NS">NS</option><option value="ON">ON</option><option value="PE">PE</option><option value="QC">QC</option><option value="SK">SK</option><option value="YT">YT</option></select>
+			                </div>
+
+			            </div><!-- /.col-xs-12.col-sm-12.col-md-3.col-lg-3 -->
+			        	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+
+			                <!-- ZIP/POSTAL CODE -->
+			                <div id="postalCode-group" class="form-group">
+			                    <label for="postalCode">Zip/Postal Code <span class="required">*</span></label>
+			                    <input type="text" class="form-control" name="postalCode" placeholder="Zip/Postal Code*" maxlength="10">
+			                    <!-- error messages append here -->
+			                </div>
+
+			            </div><!-- /.col-xs-12.col-sm-12.col-md-3.col-lg-3 -->
+					</div><!-- /.row -->
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+			                <!-- AGE -->
+			                <div id="age-group" class="form-group">
+			                    <label for="age">Age <span class="required">*</span></label>
+			                    <select class="form-control" name="age">
+			                        <option value="0" selected>Specify Age:</option>
+			                        <option value="13-24">18-24</option>
+			                        <option value="25-34">25-34</option>
+			                        <option value="35-44">35-44</option>
+			                        <option value="45-54">45-54</option>
+			                        <option value="55-64">55-64</option>
+			                        <option value="65plus">65 and older</option>
+			                    </select>
+			                </div>
+
+			            </div><!-- /.col-xs-12.col-sm-12.col-md-4.col-lg-4 -->
+			        	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+
+					        <!-- COMMENT TYPE -->
+					        <div id="commentType-group" class="form-group">
+					        	<label for="commentType">Comment Type <span class="required">*</span></label>
+					        	<select class="form-control" name="commentType">
+									<option value="0">I'm contacting you because:</option>
+									<option value="question">I have a question.</option>
+									<option value="concern">I have a concern.</option>
+									<option value="complaint">I have a complaint.</option>
+									<option value="support">I need tech support.</option>
+									<option value="other">Other</option>
+								</select>
+					        </div>
+
+					    </div><!-- /.col-xs-12.col-sm-12.col-md-8.col-lg-8 -->
+					</div><!-- /.row -->
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+					        <!-- COMMENTS -->
+					        <div id="comments-group" class="form-group">          
+					            <label for="message">Comments <span class="required">*</span> <span class="smText">(512 character limit: <span class="taCharCounter"></span>)</span></label>
+					            <textarea rows="8" name="comments" id="comments" class="form-control" placeholder="Type your questions or comments here*" onblur="taLimit(this,512);"></textarea>
+					            <!-- error messages append here -->
+					            <div class="alert alert-danger" id="taLimitDiv">
+					            	<b>You have exceeded the 512-character limit for the Comments field. Please delete some of the text and re-submit.</b>
+					            </div>
+					        </div>
+
+					    </div><!-- /.col-xs-12.col-sm-12.col-md-12.col-lg-12 -->
+			        	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+					        <!-- AGREE TO T&C -->
+					        <div id="agreeToTerms-group" class="form-group">
+					        	<div class="checkbox">
+									<label>
+										<input type="checkbox" name="agreeToTerms" id="agreeToTerms"> I have read and agree to this site's terms and conditions.<span class="required">*</span>
+									</label>
+									<!-- error messages append here -->
+								</div>
+							</div>	
+
+						</div><!-- /.col-xs-12.col-sm-12.col-md-12.col-lg-12 -->
+					</div><!-- /.row -->
+					<!-- <div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">					        
+
+					        This container is for reCAPTCHA, if required/desired.
+
+					    </div>
+					</div> -->	
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+					        <button type="submit" class="btn btn-default" onsubmit="getDT();">Submit <span class="fa fa-arrow-right"></span></button><br /><br />
+
+					        <!-- SUBMISSION SUCCESS MESSAGE -->
+
+					    </div><!-- /.col-xs-12.col-sm-12.col-md-12.col-lg-12 -->
+					</div><!-- /.row -->
+
+
+			    </form>
+
+			
+			</div><!-- /.col-xs-12.col-sm-12.col-md-12.col-lg-12 -->
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+</body>
+</html>
