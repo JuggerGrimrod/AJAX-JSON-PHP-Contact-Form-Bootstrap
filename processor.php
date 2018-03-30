@@ -12,31 +12,29 @@ $data = array(); // array to pass form data
 // regex validation (if input data is invalid, add an error to the $errors array)
 // sanitize all text fields and the comments textarea
 
-$_POST['date'] = filter_var($_POST['date'], FILTER_SANITIZE_STRING);
-$_POST['time'] = filter_var($_POST['time'], FILTER_SANITIZE_STRING);
+$_POST['date'] = filter_var($_POST['date'], FILTER_UNSAFE_RAW);
+$_POST['time'] = filter_var($_POST['time'], FILTER_UNSAFE_RAW);
 
 if(isset($_POST['salutation']) && $_POST['salutation'] == '0'){
-  $errors['salutation'] = 'Title selection is required.';       
+  	$errors['salutation'] = 'Title selection is required.';       
 }else{
-  $_POST['salutation'] = filter_var($_POST['salutation'], FILTER_SANITIZE_STRING);  
+  $_POST['salutation'] = filter_var($_POST['salutation'], FILTER_UNSAFE_RAW);  
 }
 
 if(empty($_POST['firstName'])){
 	$errors['firstName'] = 'First Name is required.';
 }elseif(!preg_match("/^[a-zA-Z\s\-\'\p{L}]{2,20}$/u",$_POST['firstName'])){ // EN only: "/^[a-zA-Z\s\-\']{2,20}$/"
-	$errors['firstName'] = "Invalid <b>First Name</b>.  Letters, (-), (') and spaces only (2-20).";
+	$errors['firstName'] = "Invalid <b>First Name</b>.  Letters, (-), (') and spaces only (2-20 characters).";
 }else{
-  $_POST['firstName'] = filter_var($_POST['firstName'], FILTER_SANITIZE_STRING);
-  $_POST['firstName'] = htmlspecialchars_decode($_POST['firstName'], ENT_QUOTES);
+  $_POST['firstName'] = filter_var($_POST['firstName'], FILTER_UNSAFE_RAW);
 }
 
 if(empty($_POST['lastName'])){
-	$errors['lastName'] = 'Last Name is required.';
+  $errors['lastName'] = 'Last Name is required.';
 }elseif(!preg_match("/^[a-zA-Z\s\-\'\p{L}]{2,20}$/u",$_POST['lastName'])){ // EN only: "/^[a-zA-Z\s\-\']{2,20}$/"
-	$errors['lastName'] = "Invalid <b>last name</b>.  Letters, (-), (') and spaces only (2-20).";            
+  $errors['lastName'] = "Invalid <b>last name</b>.  Letters, (-), (') and spaces only (2-20 characters).";            
 }else{
-	$_POST['lastName'] = filter_var($_POST['lastName'], FILTER_SANITIZE_STRING);
-  $_POST['lastName'] = htmlspecialchars_decode($_POST['lastName'], ENT_QUOTES);
+  $_POST['lastName'] = filter_var($_POST['lastName'], FILTER_UNSAFE_RAW);
 }
 
 if(empty($_POST['email'])){
@@ -56,44 +54,41 @@ if(empty($_POST['email2'])){
 }
 
 if(empty($_POST['phone'])){
-	$errors['phone'] = 'Phone Number is required.';
-}elseif(!preg_match("/^[0-9]{10}$/",$_POST['phone'])){
-	$errors['phone'] = "Invalid <b>phone number</b>.  Numbers only (10).";
+  $errors['phone'] = 'Phone Number is required.';
+}elseif(!preg_match("/^[0-9a-zA-Z.()\s\-]{10,30}$/",$_POST['phone'])){
+  $errors['phone'] = "Invalid <b>phone number</b>.  Numbers, letters, (-), (.), parentheses and spaces only (10-30 characters).";
 }else{
-	$_POST['phone'] = filter_var($_POST['phone'], FILTER_SANITIZE_STRING); 
+  $_POST['phone'] = filter_var($_POST['phone'], FILTER_UNSAFE_RAW); 
 }
 
 if(empty($_POST['address1'])){
   $errors['address1'] = 'Address 1 is required.';
-}elseif((!empty($_POST['address1'])) && (!preg_match("/^[0-9a-zA-Z\s\-\'\p{L}]{7,30}$/u",$_POST['address1']))){ // EN only: "/^[0-9a-zA-Z\s\-\']{7,30}$/"
-  $errors['address1'] = "Invalid <b>Address 1</b>.  Letters, numbers, (-), (') and spaces only (7-30 characters).";
+}elseif((!empty($_POST['address1'])) && (!preg_match("/^[0-9a-zA-Z.,\s\-\'\p{L}]{7,30}$/u",$_POST['address1']))){ // EN only: "/^[0-9a-zA-Z\s\-\']{7,30}$/"
+  $errors['address1'] = "Invalid <b>Address 1</b>.  Letters, numbers, (-), ('), (.), (,) and spaces only (7-30 characters).";
 }else{
-  $_POST['address1'] = filter_var($_POST['address1'], FILTER_SANITIZE_STRING);
-  $_POST['address1'] = htmlspecialchars_decode($_POST['address1'], ENT_QUOTES);
+  $_POST['address1'] = filter_var($_POST['address1'], FILTER_UNSAFE_RAW);
 }
 
 if(empty($_POST['address2'])){
   // do nothing, address2 is NOT required
-}elseif((!empty($_POST['address2'])) && (!preg_match("/^[0-9a-zA-Z\s\-\'\p{L}]{4,30}$/u",$_POST['address2']))){ // EN only: "/^[0-9a-zA-Z\s\-\']{4,30}$/"
-  $errors['address2'] = "Invalid <b>Address 2</b>.  Letters, numbers, (-), (') and spaces only (4-30 characters).";
+}elseif((!empty($_POST['address2'])) && (!preg_match("/^[0-9a-zA-Z.,\s\-\'\p{L}]{4,30}$/u",$_POST['address2']))){ // EN only: "/^[0-9a-zA-Z\s\-\']{4,30}$/"
+  $errors['address2'] = "Invalid <b>Address 2</b>.  Letters, numbers, (-), ('), (.), (,) and spaces only (4-30 characters).";
 }else{
-  $_POST['address2'] = filter_var($_POST['address2'], FILTER_SANITIZE_STRING); 
-  $_POST['address2'] = htmlspecialchars_decode($_POST['address2'], ENT_QUOTES);
+  $_POST['address2'] = filter_var($_POST['address2'], FILTER_UNSAFE_RAW);
 }
 
 if(empty($_POST['city'])){
   $errors['city'] = 'City is required.';
-}elseif((!empty($_POST['city'])) && (!preg_match("/^[a-zA-Z\s\-\'\p{L}]{2,20}$/u",$_POST['city']))){ // EN only: "/^[a-zA-Z\s\-\']{2,20}$/"
-  $errors['city'] = "Invalid <b>City</b>.  Letters, (-), (') and spaces only (2-20 characters).";
+}elseif((!empty($_POST['city'])) && (!preg_match("/^[a-zA-Z.\s\-\'\p{L}]{2,20}$/u",$_POST['city']))){ // EN only: "/^[a-zA-Z\s\-\']{2,20}$/"
+  $errors['city'] = "Invalid <b>City</b>.  Letters, (-), ('), (.) and spaces only (2-20 characters).";
 }else{
-  $_POST['city'] = filter_var($_POST['city'], FILTER_SANITIZE_STRING);
-  $_POST['city'] = htmlspecialchars_decode($_POST['city'], ENT_QUOTES);
+  $_POST['city'] = filter_var($_POST['city'], FILTER_UNSAFE_RAW);
 }
 
 if(isset($_POST['state']) && $_POST['state'] == '0'){
   $errors['state'] = 'State/Province selection is required.';       
 }else{
-  $_POST['state'] = filter_var($_POST['state'], FILTER_SANITIZE_STRING);  
+  $_POST['state'] = filter_var($_POST['state'], FILTER_UNSAFE_RAW);  
 }
 
 if(empty($_POST['postalCode'])){
@@ -103,45 +98,45 @@ if(empty($_POST['postalCode'])){
   // US: (!preg_match("/^([0-9]{5}(?:-[0-9]{4})?)*$/",$_POST['postalCode']))
   $errors['postalCode'] = "Invalid <b>Zip/Postal Code</b>.  US Zip Code Numbers and hyphens only (e.g. 12345 or 12345-6789).  CA Postal Code Numbers and spaces only (e.g. A1A 1A1).";
 }else{
-  $_POST['postalCode'] = filter_var($_POST['postalCode'], FILTER_SANITIZE_STRING); 
+  $_POST['postalCode'] = filter_var($_POST['postalCode'], FILTER_UNSAFE_RAW); 
 }
 
 if(isset($_POST['age']) && $_POST['age'] == '0'){
   $errors['age'] = 'Age selection is required.';       
 }else{
-  $_POST['age'] = filter_var($_POST['age'], FILTER_SANITIZE_STRING);  
+  $_POST['age'] = filter_var($_POST['age'], FILTER_UNSAFE_RAW);  
 }
 
 if(isset($_POST['commentType']) && $_POST['commentType'] == '0'){
   $errors['commentType'] = 'Comment type selection is required.';       
 }else{
-  $_POST['commentType'] = filter_var($_POST['commentType'], FILTER_SANITIZE_STRING);  
+  $_POST['commentType'] = filter_var($_POST['commentType'], FILTER_UNSAFE_RAW);  
 }
 
 if(empty($_POST['comments'])){
-	$errors['comments'] = 'Comments are required.';
+  $errors['comments'] = 'Comments are required.';
 }else{
-	$_POST['comments'] = filter_var($_POST['comments'], FILTER_SANITIZE_STRING);
+  $_POST['comments'] = filter_var($_POST['comments'], FILTER_UNSAFE_RAW);
   $_POST['comments'] = strip_tags($_POST['comments']); // optional flag for stripping out HTML tags
   $_POST['comments'] = htmlspecialchars_decode($_POST['comments'], ENT_QUOTES); // optional flag for decoding single and double-quotes
 }  
 
 if(empty($_POST['agreeToTerms'])){
-    $errors['agreeToTerms'] = 'You must agree to our Terms and Conditions.';
+  $errors['agreeToTerms'] = 'You must agree to our Terms and Conditions.';
 }else{
-	$_POST['agreeToTerms'] = 'opted-in';
+  $_POST['agreeToTerms'] = 'opted-in';
 } 
 
 // return a response
 // if there are errors in the $errors array, return a 'success' boolean of false
 if(!empty($errors)){
-	// return the $errors in the array
-	$data['success'] = false;
-	$data['errors'] = $errors;
+  // return the $errors in the array
+  $data['success'] = false;
+  $data['errors'] = $errors;
 }else{
-	// if there are no $errors, process the form $data (append to .csv file and send php mail), then return a message
+  // if there are no $errors, process the form $data (append to .csv file and send php mail), then return a message
 
-	// .csv and mail processing - send validated form data to email addess
+  // .csv and mail processing - send validated form data to email addess
   if (!$errors){
 
     // send form output to data file first
@@ -262,9 +257,9 @@ if(!empty($errors)){
 
   }
 
-	// show a success message and provide success boolean variable of true
-	$data['success'] = true;
-	$data['message'] = '<b>Your information was submitted successfully.</b> Thank you for your interest, we appreciate your input!';  
+  // show a success message and provide success boolean variable of true
+  $data['success'] = true;
+  $data['message'] = '<b>Your information was submitted successfully.</b> Thank you for your interest, we appreciate your input!';  
 
 }
 
