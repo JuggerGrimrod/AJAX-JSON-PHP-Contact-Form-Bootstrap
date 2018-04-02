@@ -57,25 +57,25 @@ The form includes the following elements and options:
   This is a server-side form-field validation and data-management file:
   * **$_POST** *$data* array created from **/index.html** form-fields (*$date, $time, $salutation, $firstname, $lastName, $email, $email2, $phone, $address1, $address2, $city, $state, $postalCode, $age, $commentType, $comments, $agreeToTerms*).
   * **Required** validation, so incomplete forms cannot be submitted or processed.
-  * **Form fields secured from injection attacks** via PHP's **FILTER_SANITIZE_STRING** method. 
+  * **Form fields secured from injection attacks** via PHP's **FILTER_UNSAFE_RAW** filter method. 
   * Robust **regular expressions (REGEX)** for multilingual form-field validation:
-    * Includes **REGEX for US and CANADA zip/postal codes** in **/processor.php on lines 101 to 103**.
-    * Includes **REGEX for multilingual special language characters (e.g.: áàâÁÀÂ éèêëÉÈÊË íîïÍÎÏ óôÓÔ ùúûüÙÚÛÜ çÇ ñÑ ÿŸ æÆ œŒ ß)** such as those used in French (FR), German (DE) and Spanish (ES) via the **\p{L}** and **/u** REGEX methods for *$firstname, $lastName, $address1, $address2* and *$city* fields in **/processor.php on lines 26, 35, 68, 77 and 86**.
+    * Includes **REGEX for US and CANADA zip/postal codes** in **/processor.php on lines 96 to 98**.
+    * Includes **REGEX for multilingual special language characters (e.g.: áàâÁÀÂ éèêëÉÈÊË íîïÍÎÏ óôÓÔ ùúûüÙÚÛÜ çÇ ñÑ ÿŸ æÆ œŒ ß)** such as those used in French (FR), German (DE) and Spanish (ES) via the **\p{L}** and **/u** REGEX methods for *$firstname, $lastName, $address1, $address2* and *$city* fields in **/processor.php on lines 26, 34, 66, 74 and 82**.
     * **Non-English (EN) special language characters will NOT validate within the $email field.**
     * **English (EN) REGEX strings (optional) are commented out at the end of each of those lines if you require English-only form data handling.**   
   * IP Address data element, pulled from *$_SERVER['REMOTE_ADDR']* (present in email response options only).
   * Data-object handling options:
-    * **.csv data-file** submission storage on server (i.e. *dataFile.csv*), with options to write ('w') or append ('a') in **/processor.php on lines 151 to 156**. The sample data file is populated with test examples from seven browsers using dummy data.  Instances of "link", "bold" and "italic" represent HTML form data that was altered via the PHP *strip_tags()* method in **/processor.php on line 125**.
+    * **.csv data-file** submission storage on server (i.e. *dataFile.csv*), with options to write ('w') or append ('a') in **/processor.php on lines 146 to 150**. The sample data file is populated with test examples from seven browsers using dummy data.  Instances of "link", "bold" and "italic" represent HTML form data (from the comments text area) which was altered via the PHP *strip_tags()* method in **/processor.php on line 120**.
     * **html email** data fulfillment: 
-      * **html email output is defined in /processor.php on lines 160 - 217** and is set as an HTML table to 100% email client viewport width.  Additionally, a placeholder image is set in the top of the table, using an image pulled from https://placeholder.com.  To see your logo image within the email output, you must link the <IMG /> tag therein to an image file on your server via an absolute URL pointing to the image asset.
-      * **html Content-type header must be set in /processor.php on line 250 (default UTF-8) or line 251 (optional ISO-8859-1)**.
+      * **html email output is defined in /processor.php on lines 155 - 212** and is set as an HTML table to 100% email client viewport width.  Additionally, a placeholder image is set in the top of the table, using an image pulled from https://placeholder.com.  To see your logo image within the email output, you must link the <IMG /> tag therein to an image file on your server via an absolute URL pointing to the image asset.
+      * **html Content-type header must be set in /processor.php on line 245 (default text/html UTF-8) or line 246 (optional text/html ISO-8859-1) or line 247 (optional text/plain UTF-8)**.
     * **plain-text email** data fulfillment:
-      * **plain-text email output is defined in /processor.php on lines 220 - 237**.
-      * **plain-text Content-type header must be set in /processor.php on line 252**.
-    * Email *$to, $from, $subject and $headers* definitions are set in **/processor.php on lines 240 - 258**.
+      * **plain-text email output is defined in /processor.php on lines 215 - 232**.
+      * **plain-text Content-type header must be set in /processor.php on line 247**.
+    * Email *$to, $from, $subject and $headers* definitions are set in **/processor.php on lines 235 - 256**.
     * **A NOTE about your mailserver:** to avoid issues with cross-domain, same-origin policy rules and email spam filters, it is recommended that your test *$to* and *$from* email addresses defined in **/processor.php** utilize email accounts belonging to the server/domain from which you are testing/running the form.  Failure to follow this recommendation will likely result in no emails being sent by your designated *$from* email account or received by your designated *$to* email account.  	
   * All form field error messages (required and validation), are defined throughout **/processor.php**.
-  * The on-page submission success message is enabled by default, and is defined as *$data['message']* in **/processor.php on line 267**.
+  * The on-page submission success message is enabled by default, and is defined as *$data['message']* in **/processor.php on line 262**.
   * PHP error reporting enabled in **/processor.php on line 5** via the *error_reporting(E_ALL);* method.
 
 * ### jQuery 2.0.3 library file at **/js/jquery.min.js**.
